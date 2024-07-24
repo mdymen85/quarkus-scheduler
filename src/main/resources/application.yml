@@ -1,0 +1,46 @@
+quarkus:
+  application:
+    name: TestApp
+
+#  datasource:
+##    jdbc: false
+##    reactive: false
+#    db-kind: h2
+#    jdbc:
+#      url: jdbc:h2:tcp://localhost/mem:test
+
+  datasource:
+    db-kind: h2
+    username: sa
+    password: password
+    jdbc:
+      driver: org.h2.Driver
+      url: jdbc:h2:file:./database;AUTO_SERVER=true;DB_CLOSE_DELAY=-1;
+
+#  datasource:
+#    jdbc:
+#      url: jdbc:mysql://localhost:3306/tests  # Adjust host, port and database name
+#      driver: com.mysql.cj.jdbc.Driver  # Assuming you have the MySQL driver included
+#      username: root
+#      password: mdymen_pass
+#      initial-size: 5  # Optional: Initial connection pool size
+#      max-pool-size: 20  # Optional: Maximum connection pool size
+
+  hibernate-orm:
+    log:
+      sql: true
+    database:
+      generation: drop-and-create
+
+  log:
+    console:
+      format: "%d{HH:mm:ss.SSS} [%-5p] %X{traceId}, %X{spanId}, parentId=%X{parentId}, sampled=%X{sampled}, [%c{2.}] (%t) %s%e%n"
+
+#  http:
+#    access-log:
+#      pattern: "...traceId=%{X,traceId} spanId=%{X,spanId}"
+
+application:
+  test:
+    threads: 5
+    name: "thread-teste-"
